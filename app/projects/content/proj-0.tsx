@@ -27,6 +27,16 @@ export default function Project0() {
                     <Image src="/static/12mm.jpg" alt="12mm shot" width={400} height={400} className="rounded-lg" />
                 </div>
             </div>
+
+            <div className="my-8">
+                <h2 className="text-xl font-bold mb-2">Dolly Zoom Recreation</h2>
+                <p className="mb-4">Recreating the dolly zoom effect using static images to show the perspective change.</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <Image src="/static/dolly1.jpg" alt="Dolly zoom frame 1" width={400} height={400} className="rounded-lg" />
+                    <Image src="/static/dolly2.jpg" alt="Dolly zoom frame 2" width={400} height={400} className="rounded-lg" />
+                    <Image src="/static/dolly3.jpg" alt="Dolly zoom frame 3" width={400} height={400} className="rounded-lg" />
+                </div>
+            </div>
         </>
     )
 }
