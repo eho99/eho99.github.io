@@ -7,7 +7,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/eho99.github.io',
   trailingSlash: true,
   reactStrictMode: true,
 }
