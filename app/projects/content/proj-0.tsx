@@ -88,7 +88,7 @@ export default function Project0() {
 
                 <div className="flex flex-col items-center">
                     <video
-                        src="/proj0/task3/dolly_zoom.mp4"
+                        src="/dolly_zoom.mp4"
                         width={600}
                         height={400}
                         autoPlay
