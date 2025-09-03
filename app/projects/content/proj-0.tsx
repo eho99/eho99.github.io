@@ -88,7 +88,7 @@ export default function Project0() {
 
                 <div className="flex flex-col items-center">
                     <Image
-                        src="/proj0/task3/dolly_zoom.gif"
+                        src="/proj0/task3/llama_dolly.gif"
                         alt="Dolly Zoom GIF"
                         width={600}
                         height={400}
