@@ -87,13 +87,14 @@ export default function Project0() {
 
 
                 <div className="flex flex-col items-center">
-                    <Image
-                        src="/proj0/task3/llama_dolly.gif"
-                        alt="Dolly Zoom GIF"
+                    <video
+                        src="/proj0/task3/dolly_zoom.mp4"
                         width={600}
                         height={400}
-                        className="rounded-lg"
-                        unoptimized={true}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                     />
                     <p className="text-sm mt-2 text-center">Dolly Zoom GIF</p>
                 </div>
