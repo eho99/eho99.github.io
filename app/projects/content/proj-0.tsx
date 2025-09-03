@@ -87,16 +87,8 @@ export default function Project0() {
 
 
                 <div className="flex flex-col items-center">
-                    <video
-                        src="/dolly_zoom.mp4"
-                        width={600}
-                        height={400}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                    />
-                    <p className="text-sm mt-2 text-center">Dolly Zoom GIF</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/RIDo5rJsV6E?si=Ke-5cJD1kEXF2Hqr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p className="text-sm mt-2 text-center">Note: I converted the GIF to a mp4 due to errors with the upload</p>
                 </div>
             </div>
         </>
