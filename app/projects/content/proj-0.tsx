@@ -1,28 +1,50 @@
-import ImageCompare from '../../../components/ImageCompare'
 import Image from 'next/image'
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
+import fs from 'fs';
+import path from 'path';
 
 export default function Project0() {
+    const task3Folder = path.join(process.cwd(), 'public/proj0/task3');
+    const task3Images = fs.readdirSync(task3Folder).filter(file => file.endsWith('.jpg'));
+
     return (
         <>
-            {/* Side-by-Side Comparison */}
             <div className="my-8">
-                <h2 className="text-xl font-bold mb-2">Side-by-Side Comparison</h2>
+                <h2 className="text-xl font-bold mb-2">Part 1: Selfie: The Wrong Way vs. The Right Way</h2>
                 <p className="mb-4">
-                    Here is the main visual comparison for the project, showing the effect of moving from telephoto to wide-angle lenses.
+                    The two photos below were shot on an iPhone 16 and show the distortion between a subject at a close distance when framed the same but taken with different zoom / focal lengths.
+
+                    <br></br>
+
+                    This difference in appearence is likely the case due to the field of view of the camera and the way it captures subjects that are close. When the subject is close, it naturally pronounces the center of the image and gives a thined effect on the edge of the subject because it is towards the end of the field of vision, while the further photo allows a more flattened perspective.
+
+                    <br></br>
+                    <i>
+                        Thank you to my friend for allowing me to use his photo in my project.
+                    </i>
                 </p>
-                <ImageCompare
-                    leftSrc="/static/85mm.jpg"
-                    rightSrc="/static/12mm.jpg"
-                    leftCaption="85mm @ 200cm"
-                    rightCaption="12mm @ 30cm"
-                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex flex-col items-center">
+                        <Image
+                            src="/proj0/task1/IMG_3407.jpg"
+                            alt="1x zoom"
+                            width={400}
+                            height={400}
+                            className="rounded-lg"
+                        />
+                        <p className="text-sm mt-2 text-center">1x zoom</p>
+                    </div>
+
+                    <div className="flex flex-col items-center">
+                        <Image
+                            src="/proj0/task1/IMG_3408.jpg"
+                            alt="2x zoom"
+                            width={400}
+                            height={400}
+                            className="rounded-lg"
+                        />
+                        <p className="text-sm mt-2 text-center">2x zoom</p>
+                    </div>
+                </div>
             </div>
 
             {/* Part 2: Architectural Perspective Compression */}
@@ -33,7 +55,7 @@ export default function Project0() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="flex flex-col items-center">
                         <Image
-                            src="/proj0/berkeley_4th_street_1x_zoom(1).jpg"
+                            src="/proj0/task2/berkeley_4th_street_1x_zoom(1).jpg"
                             alt="24mm focal length @ 25 feet away from subject shot"
                             width={400}
                             height={400}
@@ -44,7 +66,7 @@ export default function Project0() {
 
                     <div className="flex flex-col items-center">
                         <Image
-                            src="/proj0/berkeley_4th_street_2x_zoom.jpg"
+                            src="/proj0/task2/berkeley_4th_street_2x_zoom.jpg"
                             alt="48mm focal length @ 35 feet away from subject shot"
                             width={400}
                             height={400}
@@ -55,59 +77,26 @@ export default function Project0() {
                 </div>
             </div>
 
-            {/* Dolly Zoom Recreation */}
             <div className="my-8">
-                <h2 className="text-xl font-bold mb-2">Dolly Zoom Recreation</h2>
+                <h2 className="text-xl font-bold mb-2">Part 3: The Dolly Zoom</h2>
                 <p className="mb-4">
-                    Recreating the dolly zoom effect using static images to show the perspective change.
+                    The following images were taken on an iPhone 16 ranging from 1x zoom to 2.2x zoom (optical). The following colab notebook merged the images into a gif.
+                    <br></br>
+                    <a href="https://colab.research.google.com/drive/1j2J_ZrFima8-Eg1998K9W-H-RdmnTd-9?usp=sharing" className="text-blue-500 hover:underline">Colab Notebook</a>
                 </p>
 
-                {/* Placeholder for GIF or Carousel */}
-                <div className="text-center">
+
+                <div className="flex flex-col items-center">
                     <Image
-                        src="/proj0/dolly_zoom.gif"
+                        src="/proj0/task3/dolly_zoom.gif"
                         alt="Dolly Zoom GIF"
                         width={600}
                         height={400}
                         className="rounded-lg"
                     />
-                    <p>Dolly Zoom GIF</p>
-                    {/* Add GIF or Carousel component here */}
-                    <Carousel>
-                        <CarouselContent className="-ml-4">
-                            <CarouselItem className="basis-1/2 pl-4">
-                                <Image
-                                    src="/proj0/dolly_zoom_frame1.jpg"
-                                    alt="Dolly Zoom Frame 1"
-                                    width={600}
-                                    height={400}
-                                    className="rounded-lg"
-                                />
-                            </CarouselItem>
-                            <CarouselItem className="basis-1/2 pl-4">
-                                <Image
-                                    src="/proj0/dolly_zoom_frame2.jpg"
-                                    alt="Dolly Zoom Frame 2"
-                                    width={600}
-                                    height={400}
-                                    className="rounded-lg"
-                                />
-                            </CarouselItem>
-                            <CarouselItem className="basis-1/2 pl-4">
-                                <Image
-                                    src="/proj0/dolly_zoom_frame3.jpg"
-                                    alt="Dolly Zoom Frame 3"
-                                    width={600}
-                                    height={400}
-                                    className="rounded-lg"
-                                />
-                            </CarouselItem>
-                        </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
-                    </Carousel>
+                    <p className="text-sm mt-2 text-center">Dolly Zoom GIF</p>
                 </div>
             </div>
         </>
-    )
+    );
 }
