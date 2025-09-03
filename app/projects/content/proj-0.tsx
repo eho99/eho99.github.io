@@ -93,6 +93,7 @@ export default function Project0() {
                         width={600}
                         height={400}
                         className="rounded-lg"
+                        unoptimized
                     />
                     <p className="text-sm mt-2 text-center">Dolly Zoom GIF</p>
                 </div>
