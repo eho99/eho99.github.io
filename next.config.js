@@ -7,6 +7,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  basePath: '/projects',
   trailingSlash: true,
   reactStrictMode: true,
 }
