@@ -1,32 +1,70 @@
-import React from 'react'
-import Link from 'next/link'
-import projects from '../data/projects'
-import ProjectCard from '../components/ProjectCard'
+import React from 'react';
+import Link from 'next/link';
+import projects from '../data/projects';
+import ProjectCard from '../components/ProjectCard';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { ExternalLink, Github } from 'lucide-react';
 
 export default function Home() {
   return (
-    <section>
-      <div className="container">
-        <h1 className="text-3xl font-semibold">Hi — I'm eho99</h1>
-        <p className="mt-2 text-gray-600">A concise portfolio showcasing technical projects and results.</p>
+    <div className="container py-8">
+      <section className="space-y-6">
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold tracking-tight">
+            Hi — I'm{' '}
+            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              eho99
+            </span>
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-2xl">
+            A concise portfolio showcasing technical projects and results.
+          </p>
+        </div>
 
-        <section className="mt-8">
-          <h2 className="text-2xl font-medium">Featured Projects</h2>
-          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <section className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl font-semibold">Featured Projects</h2>
+            <Badge variant="outline" className="text-sm">
+              {projects.length} projects
+            </Badge>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((p) => (
               <ProjectCard key={p.slug} project={p} />
             ))}
           </div>
         </section>
 
-        <div className="mt-8">
-          <Link href="/about" className="text-accent underline">About</Link>
-          <span className="mx-2">•</span>
-          <a href="https://github.com/eho99" target="_blank" rel="noreferrer" className="text-accent underline">GitHub</a>
-          <span className="mx-2">•</span>
-          <a href="#" className="text-accent underline">LinkedIn</a>
+        <div className="flex items-center space-x-4 pt-8">
+          <Button variant="outline" asChild>
+            <Link href="/about">
+              About Me
+            </Link>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
+            <a
+              href="https://github.com/eho99"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center space-x-2"
+            >
+              <Github className="h-4 w-4" />
+              <span>GitHub</span>
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
+            <a
+              href="#"
+              className="flex items-center space-x-2"
+            >
+              <span>LinkedIn</span>
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </Button>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+    </div>
+  );
 }

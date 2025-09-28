@@ -1,108 +1,111 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Badge } from '@/components/ui/badge';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious
+} from '@/components/ui/carousel';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
 
-const ImageCarousel = ({ images = [] }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
-    const visibleImagesCount = 3;
+interface ImageCarouselProps {
+    images?: string[];
+    className?: string;
+    showCount?: boolean;
+    aspectRatio?: number;
+}
 
-    // Automatic slide transition
-    useEffect(() => {
-        let slideInterval;
-        // Check if there are enough images to form a carousel.
-        // The carousel should not auto-slide if there are fewer images than visibleImagesCount.
-        if (!isHovered && images.length > visibleImagesCount) {
-            slideInterval = setInterval(() => {
-                setCurrentIndex((prevIndex) => {
-                    const newIndex = prevIndex + 1;
-                    if (newIndex > images.length - visibleImagesCount) {
-                        return 0;
-                    }
-                    return newIndex;
-                });
-            }, 5000);
-        }
-        return () => clearInterval(slideInterval);
-    }, [isHovered, images.length, visibleImagesCount]);
+const ImageCarousel = ({
+    images = [],
+    className,
+    showCount = true,
+    aspectRatio = 16 / 9
+}: ImageCarouselProps) => {
+    const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-    const goToPrevious = () => {
-        setCurrentIndex((prevIndex) => {
-            const newIndex = prevIndex - 1;
-            if (newIndex < 0) {
-                return images.length - visibleImagesCount;
-            }
-            return newIndex;
-        });
+    const handleImageLoad = (index: number) => {
+        setLoadedImages(prev => new Set(prev).add(index));
     };
 
-    const goToNext = () => {
-        setCurrentIndex((prevIndex) => {
-            const newIndex = prevIndex + 1;
-            if (newIndex > images.length - visibleImagesCount) {
-                return 0;
-            }
-            return newIndex;
-        });
+    const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+        const target = e.target as HTMLImageElement;
+        target.src = 'https://placehold.co/1200x600?text=Image+Not+Found';
     };
+
+    if (images.length === 0) {
+        return (
+            <Card className={cn("w-full", className)}>
+                <CardContent className="p-6">
+                    <div className="text-center text-muted-foreground">
+                        No images to display
+                    </div>
+                </CardContent>
+            </Card>
+        );
+    }
 
     return (
-        <div
-            className="flex justify-center items-center py-10 px-4 sm:px-6 lg:px-8 bg-gray-100 min-h-screen"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-        >
-            <div className="relative w-full max-w-6xl mx-auto overflow-hidden rounded-xl shadow-2xl transition-all duration-300">
-                <div
-                    className="flex transition-transform duration-500 ease-in-out gap-4"
-                    style={{ transform: `translateX(-${currentIndex * (100 / visibleImagesCount)}%)` }}
-                >
+        <div className={cn("w-full", className)}>
+            {showCount && images.length > 0 && (
+                <div className="mb-4 flex items-center justify-between">
+                    <Badge variant="secondary" className="text-sm">
+                        {images.length} {images.length === 1 ? 'image' : 'images'}
+                    </Badge>
+                </div>
+            )}
+
+            <Carousel className="w-full">
+                <CarouselContent className="-ml-2 md:-ml-4">
                     {images.map((url, index) => (
-                        <div key={index} className="flex-shrink-0 w-1/3">
-                            <img
-                                src={url}
-                                alt={`Slide ${index + 1}`}
-                                width={600}
-                                height={400}
-                                className="w-full h-auto object-cover rounded-xl"
-                                loading="lazy"
-                                onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.onerror = null;
-                                    target.src = 'https://placehold.co/1200x600?text=Image+Not+Found';
-                                }}
-                            />
-                        </div>
+                        <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                            <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                                <CardContent className="p-0">
+                                    <Dialog>
+                                        <DialogTrigger asChild>
+                                            <div className="cursor-pointer group">
+                                                <AspectRatio ratio={aspectRatio}>
+                                                    {!loadedImages.has(index) && (
+                                                        <Skeleton className="w-full h-full absolute inset-0 z-10" />
+                                                    )}
+                                                    <img
+                                                        src={url}
+                                                        alt={`Gallery image ${index + 1}`}
+                                                        className={cn(
+                                                            "w-full h-full object-cover transition-transform duration-300 group-hover:scale-105",
+                                                            loadedImages.has(index) ? "opacity-100" : "opacity-0"
+                                                        )}
+                                                        loading="lazy"
+                                                        onLoad={() => handleImageLoad(index)}
+                                                        onError={handleImageError}
+                                                    />
+                                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                                                </AspectRatio>
+                                            </div>
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-4xl p-0 bg-transparent border-0">
+                                            <div className="relative">
+                                                <img
+                                                    src={url}
+                                                    alt={`Gallery image ${index + 1}`}
+                                                    className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
+                                                />
+                                            </div>
+                                        </DialogContent>
+                                    </Dialog>
+                                </CardContent>
+                            </Card>
+                        </CarouselItem>
                     ))}
-                </div>
-
-                <button
-                    onClick={goToPrevious}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white p-2 rounded-full backdrop-blur-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50"
-                    aria-label="Previous Slide"
-                >
-                    <ChevronLeft size={32} />
-                </button>
-
-                <button
-                    onClick={goToNext}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white p-2 rounded-full backdrop-blur-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50"
-                    aria-label="Next Slide"
-                >
-                    <ChevronRight size={32} />
-                </button>
-
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                    {Array.from({ length: Math.ceil(images.length / visibleImagesCount) }).map((_, pageIndex) => (
-                        <button
-                            key={pageIndex}
-                            onClick={() => setCurrentIndex(pageIndex * visibleImagesCount)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${currentIndex >= pageIndex * visibleImagesCount && currentIndex < (pageIndex + 1) * visibleImagesCount ? 'bg-white' : 'bg-white/50 hover:bg-white/80'
-                                }`}
-                            aria-label={`Go to page ${pageIndex + 1}`}
-                        />
-                    ))}
-                </div>
-            </div>
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex" />
+                <CarouselNext className="hidden md:flex" />
+            </Carousel>
         </div>
     );
 };
