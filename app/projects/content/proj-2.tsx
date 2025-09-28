@@ -7,7 +7,7 @@ export default function Project2() {
         <div className="space-y-10">
             {/* Header */}
             <section className="space-y-4">
-                <h1 className="text-4xl font-bold">Fun with Filters and Frequencies!</h1>
+                <h1 className="text-4xl font-bold">Project 2: Fun with Filters and Frequencies!</h1>
                 <div className="flex gap-2 pt-2">
                     <Button asChild size="sm" variant="secondary">
                         <a href="#part-1">Jump to Part 1</a>
