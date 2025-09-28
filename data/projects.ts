@@ -22,8 +22,8 @@ const projects = [
   {
     slug: 'proj-2',
     title: 'Project 2: Fun with Filters and Frequencies!',
-    short: 'Exploring image filtering, frequency domain analysis, and hybrid images using computer vision techniques',
-    description: 'Implementing various image filters, analyzing frequency domains, and creating hybrid images that change appearance based on viewing distance',
+    short: 'Using kernels and convolutions to create image filters, hybrid images, and multiresolution blends.',
+    description: 'Using kernels and convolutions to create image filters, hybrid images, and multiresolution blends.',
     content: Project2,
     tags: ['Computer Vision', 'Signal Processing', 'Image Filtering', 'Fourier Transform']
   }
