@@ -1,6 +1,7 @@
 import Project0 from "../app/projects/content/proj-0"
 import Project1 from "../app/projects/content/proj-1"
 import Project2 from "app/projects/content/proj-2"
+import Project3 from "app/projects/content/proj-3"
 
 const projects = [
   {
@@ -26,6 +27,14 @@ const projects = [
     description: 'Using kernels and convolutions to create image filters, hybrid images, and multiresolution blends.',
     content: Project2,
     tags: ['Computer Vision', 'Signal Processing', 'Image Filtering', 'Fourier Transform']
+  },
+  {
+    slug: 'proj-3',
+    title: 'Image Warping and Mosaicing',
+    short: 'Part 1 of Project 3: (Auto)stiching Photo Mosaics',
+    description: 'Part 1 of Project 3: (Auto)stiching Photo Mosaics',
+    content: Project3,
+    tags: ['Computer Vision', 'Homography', 'Image Warping', 'Panorama', 'Mosaics']
   }
 ]
 
