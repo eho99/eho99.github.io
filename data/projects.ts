@@ -30,9 +30,9 @@ const projects = [
   },
   {
     slug: 'proj-3',
-    title: 'Image Warping and Mosaicing',
-    short: 'Part 1 of Project 3: (Auto)stiching Photo Mosaics',
-    description: 'Part 1 of Project 3: (Auto)stiching Photo Mosaics',
+    title: 'Project 3: [Auto]Stitching Photo Mosaics',
+    short: 'Using homography matrices to (auto)stitch photo mosaics',
+    description: 'Using homography matrices to (auto)stitch photo mosaics',
     content: Project3,
     tags: ['Computer Vision', 'Homography', 'Image Warping', 'Panorama', 'Mosaics']
   }
