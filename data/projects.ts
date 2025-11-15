@@ -2,6 +2,7 @@ import Project0 from "../app/projects/content/proj-0"
 import Project1 from "../app/projects/content/proj-1"
 import Project2 from "app/projects/content/proj-2"
 import Project3 from "app/projects/content/proj-3"
+import Project4 from "app/projects/content/proj-4"
 
 const projects = [
   {
@@ -35,6 +36,14 @@ const projects = [
     description: 'Using homography matrices to (auto)stitch photo mosaics',
     content: Project3,
     tags: ['Computer Vision', 'Homography', 'Image Warping', 'Panorama', 'Mosaics']
+  },
+  {
+    slug: 'proj-4',
+    title: 'Project 4: Neural Radiance Field!',
+    short: 'Building out a NeRF model',
+    description: 'Building out a NeRF model',
+    content: Project4,
+    tags: ['Computer Vision', 'Deep Learning', 'NeRF', '3D Reconstruction', 'Neural Networks']
   }
 ]
 
