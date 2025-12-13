@@ -3,6 +3,7 @@ import Project1 from "./proj-1"
 import Project2 from "./proj-2"
 import Project3 from "./proj-3"
 import Project4 from "./proj-4"
+import Project5 from "./proj-5"
 
 // This object maps a slug string to a React component
 export const projectComponentMap: { [key: string]: React.ComponentType } = {
@@ -11,4 +12,5 @@ export const projectComponentMap: { [key: string]: React.ComponentType } = {
   'proj-2': Project2,
   'proj-3': Project3,
   'proj-4': Project4,
+  'proj-5': Project5,
 }

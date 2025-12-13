@@ -3,6 +3,7 @@ import Project1 from "../app/projects/content/proj-1"
 import Project2 from "app/projects/content/proj-2"
 import Project3 from "app/projects/content/proj-3"
 import Project4 from "app/projects/content/proj-4"
+import Project5 from "app/projects/content/proj-5"
 
 const projects = [
   {
@@ -44,6 +45,14 @@ const projects = [
     description: 'Building out a NeRF model',
     content: Project4,
     tags: ['Computer Vision', 'Deep Learning', 'NeRF', '3D Reconstruction', 'Neural Networks']
+  },
+  {
+    slug: 'proj-5',
+    title: 'Project 5: Fun With Diffusion Models!',
+    short: 'Exploring diffusion models for image generation',
+    description: 'Implementing and experimenting with diffusion models, including Part A: The Power of Diffusion Models and Part B: Diffusion Models from Scratch.',
+    content: Project5,
+    tags: ['Diffusion Models', 'Computer Vision', 'Deep Learning', 'Generative AI']
   }
 ]
 
