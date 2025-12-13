@@ -38,6 +38,14 @@ export default function Project5() {
             {/* PART A */}
             <h2 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-4">Part A: The Power of Diffusion Models!</h2>
 
+            <Section title="0 Sample Images from DeepFloyd IF" color="blue">
+                <div className="grid grid-cols-3 justify-center gap-6">
+                    <ImageCard src="/proj5/parta/sample_images/a_lithograph_of_the_great_wall.png" alt="Great Wall" caption="A Lithograph of the Great Wall" />
+                    <ImageCard src="/proj5/parta/sample_images/an_oil_painting_of_a_duck.png" alt="Duck" caption="An Oil Painting of a Duck" />
+                    <ImageCard src="/proj5/parta/sample_images/an_oil_painting_of_an_oceanside_sunset.png" alt="Sunset" caption="An Oil Painting of an Oceanside Sunset" />
+                </div>
+            </Section>
+
             <Section title="1.1 Implementing the Forward Process" color="blue">
                 <div className="grid grid-cols-1 justify-center gap-6">
                     <ImageCard src="/proj5/parta/1.1/noisy.png" alt="Noisy Image" caption="Noisy Image Generation" />
