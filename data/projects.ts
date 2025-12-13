@@ -49,8 +49,8 @@ const projects = [
   {
     slug: 'proj-5',
     title: 'Project 5: Fun With Diffusion Models!',
-    short: 'Exploring diffusion models for image generation',
-    description: 'Implementing and experimenting with diffusion models, including Part A: The Power of Diffusion Models and Part B: Diffusion Models from Scratch.',
+    short: 'Exploring diffusion models for image generation and denoising',
+    description: 'Exploring diffusion models for image generation and denoising',
     content: Project5,
     tags: ['Diffusion Models', 'Computer Vision', 'Deep Learning', 'Generative AI']
   }

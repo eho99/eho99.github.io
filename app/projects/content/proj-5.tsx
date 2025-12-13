@@ -35,10 +35,6 @@ const Section = ({ title, children, color = "blue" }: { title: string, children:
 export default function Project5() {
     return (
         <div className="space-y-4 max-w-6xl mx-auto">
-            <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                This project explores the power of diffusion models, starting from pre-trained models and moving towards building and training diffusion models from scratch.
-            </p>
-
             {/* PART A */}
             <h2 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-4">Part A: The Power of Diffusion Models!</h2>
 
@@ -222,51 +218,69 @@ export default function Project5() {
                 <h2 className="text-2xl font-bold mb-4 text-gray-800">Part B: Diffusion Models from Scratch!</h2>
             </div>
 
-            <Section title="1 Training a Single-Step Denoising Net" color="green">
-                <p className="text-gray-700 mb-4">Training a UNet to denoise MNIST digits.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 className="font-semibold text-center mb-2">Training Loss</h4>
-                        <ImageCard src="/proj5/partb/1.2.1/training_loss.png" alt="Training Loss" caption="Loss Curve" />
-                    </div>
-                    <div className="grid grid-cols-2 gap-2">
-                        <ImageCard src="/proj5/partb/1.2.1/epoch1.png" width={150} height={150} alt="Epoch 1" caption="Epoch 1" />
-                        <ImageCard src="/proj5/partb/1.2.1/epoch5.png" width={150} height={150} alt="Epoch 5" caption="Epoch 5" />
-                    </div>
-                </div>
-            </Section>
-
-            <Section title="1.2 Adding Time Conditioning (DDPM)" color="green">
-                <p className="text-gray-700 mb-4">Adding time embeddings to train a full DDPM.</p>
+            <Section title="Part 1: Training a Single-Step Denoising UNet" color="green">
                 <div className="mb-8">
-                    <h4 className="font-semibold text-center mb-4">Noise Schedule</h4>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <ImageCard src="/proj5/partb/1.2.2/noise_0.png" width={100} height={100} alt="Noise 0" caption="t=0" />
-                        <ImageCard src="/proj5/partb/1.2.2/noise_2.png" width={100} height={100} alt="Noise 2" caption="t=2" />
-                        <ImageCard src="/proj5/partb/1.2.2/noise_4.png" width={100} height={100} alt="Noise 4" caption="t=4" />
-                        <ImageCard src="/proj5/partb/1.2.2/noise_6.png" width={100} height={100} alt="Noise 6" caption="t=6" />
-                        <ImageCard src="/proj5/partb/1.2.2/noise_8.png" width={100} height={100} alt="Noise 8" caption="t=8" />
-                        <ImageCard src="/proj5/partb/1.2.2/noise_10.png" width={100} height={100} alt="Noise 10" caption="t=10" />
-                    </div>
+                    <h4 className="font-semibold text-center mb-2">Training Loss</h4>
+                    <ImageCard src="/proj5/partb/1.2.1/training_loss.png" alt="Training Loss" caption="Loss Curve" />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 className="font-semibold text-center mb-2">Training Loss</h4>
-                        <ImageCard src="/proj5/partb/1.2.3/training_loss.png" alt="Training Loss" caption="DDPM Loss" />
+                <div className="mb-8">
+                    <h4 className="font-semibold text-center mb-2">Epochs</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 justify-items-center mb-4">
+                        <ImageCard src="/proj5/partb/1.2.1/epoch1.png" width={300} height={300} alt="Epoch 1" caption="Epoch 1" />
+                        <ImageCard src="/proj5/partb/1.2.1/epoch2.png" width={300} height={300} alt="Epoch 2" caption="Epoch 2" />
+                        <ImageCard src="/proj5/partb/1.2.1/epoch3.png" width={300} height={300} alt="Epoch 3" caption="Epoch 3" />
                     </div>
-                    <div>
-                        <h4 className="font-semibold text-center mb-2">Sampling Results</h4>
-                        <div className="grid grid-cols-2 gap-2">
-                            <ImageCard src="/proj5/partb/1.2.3/epoch_1.png" width={150} height={150} alt="Epoch 1" caption="Epoch 1" />
-                            <ImageCard src="/proj5/partb/1.2.3/epoch_5.png" width={150} height={150} alt="Epoch 5" caption="Epoch 5" />
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 justify-items-center">
+                        <ImageCard src="/proj5/partb/1.2.1/epoch4.png" width={300} height={300} alt="Epoch 4" caption="Epoch 4" />
+                        <ImageCard src="/proj5/partb/1.2.1/epoch5.png" width={300} height={300} alt="Epoch 5" caption="Epoch 5" />
                     </div>
                 </div>
             </Section>
 
-            <Section title="2. Training on Class-Conditioned Digits" color="purple">
-                <p className="text-gray-700 mb-4">Conditioning the generation on specific MNIST digits.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Section title="1.2.2 Out-of-Distribution Testing" color="green">
+                <p className="text-gray-700 mb-4">Testing the denoiser on different noise levels.</p>
+                <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <ImageCard src="/proj5/partb/1.2.2/noise_0.png" width={300} height={300} alt="Noise 0" caption="Sigma=0.0" />
+                        <ImageCard src="/proj5/partb/1.2.2/noise_2.png" width={300} height={300} alt="Noise 2" caption="Sigma=0.2" />
+                        <ImageCard src="/proj5/partb/1.2.2/noise_4.png" width={300} height={300} alt="Noise 4" caption="Sigma=0.4" />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <ImageCard src="/proj5/partb/1.2.2/noise_5.png" width={300} height={300} alt="Noise 5" caption="Sigma=0.5" />
+                        <ImageCard src="/proj5/partb/1.2.2/noise_6.png" width={300} height={300} alt="Noise 6" caption="Sigma=0.6" />
+                        <ImageCard src="/proj5/partb/1.2.2/noise_8.png" width={300} height={300} alt="Noise 8" caption="Sigma=0.8" />
+                    </div>
+                    <div className="grid grid-cols-1 justify-items-center">
+                        <ImageCard src="/proj5/partb/1.2.2/noise_10.png" width={300} height={300} alt="Noise 10" caption="Sigma=1.0" />
+                    </div>
+                </div>
+            </Section>
+
+            <Section title="1.2.3 Denoising Pure Noise" color="green">
+                <p className="text-gray-700 mb-4">These are the results of training the UNet on pure noise. As seen below, the training loss did not improve over the course of training, nor have the outputs of the model evaluation changed. This can be explained by how the UNet calculates loss. As the model attempts to find the minimum squared differences between the output and the target, it outputs the most "average" looking number, crossing between a 3 and an 8. This represents the "centroid" of the digit clusters, stemming from pure noise. </p>
+
+                <div className="mb-8">
+                    <h4 className="font-semibold text-center mb-2">Training Loss</h4>
+                    <ImageCard src="/proj5/partb/1.2.3/training_loss.png" alt="Training Loss" caption="Loss Curve" />
+                </div>
+                <div className="mb-8">
+                    <h4 className="font-semibold text-center mb-2">Epochs</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 justify-items-center mb-4">
+                        <ImageCard src="/proj5/partb/1.2.3/epoch_1.png" width={300} height={300} alt="Epoch 1" caption="Epoch 1" />
+                        <ImageCard src="/proj5/partb/1.2.3/epoch_2.png" width={300} height={300} alt="Epoch 2" caption="Epoch 2" />
+                        <ImageCard src="/proj5/partb/1.2.3/epoch_3.png" width={300} height={300} alt="Epoch 3" caption="Epoch 3" />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 justify-items-center">
+                        <ImageCard src="/proj5/partb/1.2.3/epoch_4.png" width={300} height={300} alt="Epoch 4" caption="Epoch 4" />
+                        <ImageCard src="/proj5/partb/1.2.3/epoch_5.png" width={300} height={300} alt="Epoch 5" caption="Epoch 5" />
+                    </div>
+                </div>
+            </Section>
+
+            <Section title="Part 2: Training a Flow Matching Model" color="purple">
+                <p className="text-gray-700 mb-4">Time-Conditioned UNet</p>
+
+                <div className="grid grid-cols-1 gap-8">
                     <div>
                         <h4 className="font-semibold text-center mb-2">Training Loss</h4>
                         <ImageCard src="/proj5/partb/2.2/training_loss.png" alt="Training Loss" caption="Class-Conditioned Loss" />
@@ -274,31 +288,50 @@ export default function Project5() {
                     <div>
                         <h4 className="font-semibold text-center mb-2">Generated Digits over Epochs</h4>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                            <ImageCard src="/proj5/partb/2.3/epoch_1.png" width={120} height={120} alt="Epoch 1" caption="Epoch 1" />
-                            <ImageCard src="/proj5/partb/2.3/epoch_5.png" width={120} height={120} alt="Epoch 5" caption="Epoch 5" />
-                            <ImageCard src="/proj5/partb/2.3/epoch_10.png" width={120} height={120} alt="Epoch 10" caption="Epoch 10" />
+                            <ImageCard src="/proj5/partb/2.3/epoch_1_full.png" width={300} height={300} alt="Epoch 1" caption="Epoch 1" />
+                            <ImageCard src="/proj5/partb/2.3/epoch_5_full.png" width={300} height={300} alt="Epoch 5" caption="Epoch 5" />
+                            <ImageCard src="/proj5/partb/2.3/epoch_10_full.png" width={300} height={300} alt="Epoch 10" caption="Epoch 10" />
                         </div>
                     </div>
                 </div>
             </Section>
 
-            <Section title="2.6 Classifier-Free Guidance on MNIST" color="orange">
-                <p className="text-gray-700 mb-4">Improving digit generation using CFG.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Section title="2.4 Adding Class-Conditioning to UNet" color="orange">
+                <div className="grid grid-cols-1 gap-8">
                     <div>
                         <h4 className="font-semibold text-center mb-2">Training Loss</h4>
-                        <ImageCard src="/proj5/partb/2.5/training_losses.png" alt="Training Loss" caption="CFG Training Loss" />
+                        <ImageCard src="/proj5/partb/2.5/training_losses.png" alt="Training Loss" caption="Training Loss" />
                     </div>
                     <div>
-                        <h4 className="font-semibold text-center mb-2">CFG Results</h4>
+                        <h4 className="font-semibold text-center mb-2">Results</h4>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                            <ImageCard src="/proj5/partb/2.6/epoch_1.png" width={120} height={120} alt="Epoch 1" caption="Epoch 1" />
-                            <ImageCard src="/proj5/partb/2.6/epoch_5.png" width={120} height={120} alt="Epoch 5" caption="Epoch 5" />
-                            <ImageCard src="/proj5/partb/2.6/epoch_10.png" width={120} height={120} alt="Epoch 10" caption="Epoch 10" />
+                            <ImageCard src="/proj5/partb/2.6/epoch_1.png" width={300} height={300} alt="Epoch 1" caption="Epoch 1" />
+                            <ImageCard src="/proj5/partb/2.6/epoch_5.png" width={300} height={300} alt="Epoch 5" caption="Epoch 5" />
+                            <ImageCard src="/proj5/partb/2.6/epoch_10.png" width={300} height={300} alt="Epoch 10" caption="Epoch 10" />
                         </div>
                     </div>
                 </div>
             </Section>
+
+            <Section title="2.6 Class-Conditioned UNet without Learning Rate Scheduler" color="orange">
+                <p className="text-gray-700 mb-4">By removing the training loss scheduler, I set the base learning rate to be smaller (1e-3) to achieve similar results. With a slower learning rate, we can be more confident in minimizing the loss with precision. </p>
+
+                <div className="grid grid-cols-1 gap-8">
+                    <div>
+                        <h4 className="font-semibold text-center mb-2">Training Loss</h4>
+                        <ImageCard src="/proj5/partb/2.6_no_schedule/training_loss.png" alt="Training Loss Without LR Scheduler" caption="Training Loss Without LR Scheduler" />
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-center mb-2">CFG Results</h4>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                            <ImageCard src="/proj5/partb/2.6_no_schedule/epoch_1.png" width={300} height={300} alt="Epoch 1 No LR" caption="Epoch 1" />
+                            <ImageCard src="/proj5/partb/2.6_no_schedule/epoch_5.png" width={300} height={300} alt="Epoch 5 No LR" caption="Epoch 5" />
+                            <ImageCard src="/proj5/partb/2.6_no_schedule/epoch_10.png" width={300} height={300} alt="Epoch 10 No LR" caption="Epoch 10" />
+                        </div>
+                    </div>
+                </div>
+            </Section>
+
         </div>
     );
 }
